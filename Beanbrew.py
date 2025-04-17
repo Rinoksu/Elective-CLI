@@ -3,7 +3,7 @@ from datetime import datetime
 
 # Database setup
 def setup_database():
-    conn = sqlite3.connect("bean_brew.db")
+    conn = sqlite3.connect("coffee_shop.db")
     cursor = conn.cursor()
     
     # Create tables
