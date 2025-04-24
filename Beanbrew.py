@@ -37,7 +37,7 @@ def setup_database():
 def add_menu_item():
     name = input("Enter item name: ")
     price = float(input("Enter item price: "))
-    conn = sqlite3.connect("bean_brew.db")
+    conn = sqlite3.connect("coffee_shop.db")
     cursor = conn.cursor()
     cursor.execute("INSERT INTO menu (name, price) VALUES (?, ?)", (name, price))
     conn.commit()
@@ -45,7 +45,7 @@ def add_menu_item():
     print(f"{name} added to menu.")
 
 def view_menu():
-    conn = sqlite3.connect("bean_brew.db")
+    conn = sqlite3.connect("coffee_shop.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM menu")
     rows = cursor.fetchall()
@@ -57,7 +57,7 @@ def view_menu():
 def add_inventory_item():
     item_name = input("Enter inventory item name: ")
     quantity = int(input("Enter quantity: "))
-    conn = sqlite3.connect("bean_brew.db")
+    conn = sqlite3.connect("coffee_shop.db")
     cursor = conn.cursor()
     cursor.execute("INSERT INTO inventory (item_name, quantity) VALUES (?, ?)", (item_name, quantity))
     conn.commit()
@@ -65,7 +65,7 @@ def add_inventory_item():
     print(f"{item_name} added to inventory.")
 
 def view_inventory():
-    conn = sqlite3.connect("bean_brew.db")
+    conn = sqlite3.connect("coffee_shop.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM inventory")
     rows = cursor.fetchall()
@@ -77,7 +77,7 @@ def view_inventory():
 def process_sale():
     item_id = int(input("Enter menu item ID: "))
     quantity = int(input("Enter quantity: "))
-    conn = sqlite3.connect("bean_brew.db")
+    conn = sqlite3.connect("coffee_shop.db")
     cursor = conn.cursor()
     cursor.execute("SELECT name, price FROM menu WHERE id = ?", (item_id,))
     item = cursor.fetchone()
@@ -93,7 +93,7 @@ def process_sale():
     conn.close()
 
 def generate_sales_report():
-    conn = sqlite3.connect("bean_brew.db")
+    conn = sqlite3.connect("coffee_shop.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM sales")
     rows = cursor.fetchall()
@@ -106,7 +106,7 @@ def generate_sales_report():
 def main():
     setup_database()
     while True:
-        print("\nBean Brew CLI")
+        print("\nBean Brew ")
         print("1. Add Menu Item")
         print("2. View Menu")
         print("3. Add Inventory Item")
@@ -129,7 +129,7 @@ def main():
         elif choice == "6":
             generate_sales_report()
         elif choice == "7":
-            print("Exiting Bean Brew CLI. Goodbye!")
+            print("Exiting Bean Brew. Goodbye!")
             break
         else:
             print("Invalid choice. Please try again.")
